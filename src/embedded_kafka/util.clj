@@ -6,7 +6,7 @@
            [org.apache.kafka.common.serialization Serdes]
            [org.apache.kafka.clients.producer KafkaProducer ProducerRecord]
            [org.apache.kafka.clients.consumer KafkaConsumer ConsumerRecord]
-           [kafka.admin]
+           ;;[kafka.admin]
            [java.util UUID]))
 
 ;; Default properties for test producer / consumer
