@@ -15,11 +15,6 @@
       (log/info "stopped zookeeper"))
     (assoc component :server nil)))
 
-(defn new-cluster [config]
-  (component/system-map
-   :kafka-broker (component/using (map->EmbeddedKafka config) [:zoo-keeper])
-   :zoo-keeper (map->EmbeddedZooKeeper config)))
-
 (defrecord EmbeddedKafka [init-config zoo-keeper]
   component/Lifecycle
   (start [component]
@@ -33,3 +28,8 @@
       (stop-kafka (:server component) (:log-dir-path component)))
     (assoc component :server nil)
     (assoc component :log-dir-path nil)))
+
+(defn new-cluster [config]
+  (component/system-map
+   :kafka-broker (component/using (map->EmbeddedKafka config) [:zoo-keeper])
+   :zoo-keeper (map->EmbeddedZooKeeper config)))
