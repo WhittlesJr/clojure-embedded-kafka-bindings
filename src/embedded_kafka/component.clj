@@ -11,7 +11,7 @@
     (assoc component :server (TestingServer.)))
   (stop [component]
     (when-let [server (:server component)]
-      (.close (:server component))
+      (.close server)
       (log/info "stopped zookeeper"))
     (assoc component :server nil)))
 
